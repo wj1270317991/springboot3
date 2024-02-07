@@ -1,0 +1,71 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.1.82:3330/test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: sino
+    password: sino
+  mail:
+    host: smtp.qq.com
+    port: 465
+    default-encoding: utf-8
+    username: 1270317991@qq.com
+    password: wndnvsyteylbigig
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          ssl:
+            enable: true
+          auth: true
+  data:
+    redis:
+      host: 192.168.1.250
+      port: 6379
+      database: 1
+      # 读超时
+      timeout: 3000
+      # 连接超时
+      connectTimeout: 5000
+      # Lettuce连接池
+      lettuce:
+        pool:
+          # 最小空闲连接
+          min-idle: 5
+          # 最大空闲连接
+          max-idle: 10
+          # 最大连接数
+          max-active: 100
+          # 连接分配应该阻塞的最大时间
+          max-wait: 2000
+  cache:
+    type: REDIS
+    data:
+      redis:
+        host: 192.168.1.250
+        username:
+        port: 6379
+        password:
+        database: 2
+        time-to-live: 1800000   #设置缓存过期时间，可选
+        lettuce:
+          pool:
+            enabled: true
+            max-active: 8
+            max-wait: 1000
+            max-idle: 8
+        connect-timeout: 5000
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+decorator:
+  datasource:
+    p6spy:
+      # 全部可用参数参照该类：com.p6spy.engine.spy.appender.CustomLineFormat
+      log-format: "\ntime:%(executionTime) || sql:%(sql)\n"
+      # 自定义日志类的作用仅仅是改变了打印的颜色，如果不需要可以不加
+      logging: custom
+      custom-appender-class: com.example17.demo17.config.StdoutLogger
+
