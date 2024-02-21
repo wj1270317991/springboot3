@@ -4,6 +4,9 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentPBEConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootTest
 class Demo17ApplicationTests {
@@ -32,6 +35,14 @@ class Demo17ApplicationTests {
         String encryptedText = "oOuQJhZQF9JcHz0dba78cw==";   //加密后的密码
         String plainText = standardPBEStringEncryptor.decrypt(encryptedText);
         System.out.println(plainText);
+    }
+
+
+    @Test
+    public void encode1(){
+        PasswordEncoder delegatingPasswordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        String encode = delegatingPasswordEncoder.encode("11111");
+        System.out.println(encode);
     }
 
 

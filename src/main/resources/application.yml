@@ -2,6 +2,10 @@ logging:
   level:
     org.springframework.security: trace
 spring:
+  security:
+    user:
+      name: admin
+      password: 123
   datasource:
     url: jdbc:mysql://192.168.1.82:3330/test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     username: sino
@@ -86,4 +90,5 @@ jasypt:
 app:
   jwt-secret: daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb
   jwt-expiration-milliseconds: 604800000
+
 
