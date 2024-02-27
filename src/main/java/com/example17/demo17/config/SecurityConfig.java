@@ -13,7 +13,9 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,6 +45,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/login").permitAll() //登录放行
                         .anyRequest().authenticated()
                 )
+                .sessionManagement(session->{
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                })
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
@@ -89,6 +94,12 @@ public class SecurityConfig {
     }
 
 
+    /**
+     * 身份认证管理器，调用authenticate()方法完成认证
+     * @param configuration
+     * @return
+     * @throws Exception
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
@@ -104,5 +115,24 @@ public class SecurityConfig {
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         return daoAuthenticationProvider;
+    }
+
+
+    /**
+     * 静态资源放行
+     */
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(
+                "/doc.html",
+                "/doc.html/**",
+                "/v3/api-docs",
+                "/v3/api-docs/**",
+                "/webjars/**",
+                "/authenticate",
+                "/swagger-ui.html/**",
+                "/swagger-resources",
+                "/swagger-resources/**"
+        );
     }
 }

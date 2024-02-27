@@ -20,7 +20,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class JwtUtils {
 
-    private final String signingKey = "fdsfdsfdsafgfdAvsdfofdsf";
+    private final String signingKey = "3F4428472B4B6250655368566D5971337336763979244226452948404D635166";
     private final Long expire = 3600L * 24L;
 
     /**

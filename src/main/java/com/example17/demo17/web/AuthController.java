@@ -43,7 +43,7 @@ public class AuthController {
     @PostMapping("login")
     public String doLogin(@RequestBody Users userLoginDTO) {
         try {
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userLoginDTO.getUsername(), userLoginDTO.getPassword());
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userLoginDTO.getName(), userLoginDTO.getPassword());
             Authentication authentication = authenticationManager.authenticate(auth);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
