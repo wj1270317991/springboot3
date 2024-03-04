@@ -2,14 +2,18 @@ logging:
   level:
     org.springframework.security: trace
 spring:
+  batch:
+    job:
+      enabled: true
+    initialize-schema: ALWAYS
   security:
     user:
       name: admin
       password: 123
   datasource:
     url: jdbc:mysql://192.168.1.82:3330/test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: sino
-    password: ENC(2lxJjt1cxxTdB6zW74X3vw==)
+    username: sino_dev
+    password: ENC(R2XXjI4L8Fvx6fDp3VqdIw==)
   mail:
     host: smtp.qq.com
     port: 465

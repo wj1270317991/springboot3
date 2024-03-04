@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize
                         .requestMatchers(HttpMethod.POST, "/login").permitAll() //登录放行
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .sessionManagement(session->{
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

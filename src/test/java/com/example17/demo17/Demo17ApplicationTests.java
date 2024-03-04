@@ -19,7 +19,7 @@ class Demo17ApplicationTests {
         config.setAlgorithm("PBEWithMD5AndDES");          // 加密的算法，这个算法是默认的
         config.setPassword("secrect");                        // 加密的密钥，随便自己填写，很重要千万不要告诉别人
         standardPBEStringEncryptor.setConfig(config);
-        String plainText = "sino";         //自己的密码
+        String plainText = "dba.com";         //自己的密码
         String encryptedText = standardPBEStringEncryptor.encrypt(plainText);
         System.out.println("密码：" + encryptedText);
     }

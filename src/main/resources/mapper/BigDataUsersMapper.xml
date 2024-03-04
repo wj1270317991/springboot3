@@ -13,4 +13,8 @@
     <!--@mbg.generated-->
     id, `name`, age, email
   </sql>
+
+  <select id="getList" resultMap="BaseResultMap">
+    select id, `name`, age, email from big_data_users where id > #{params.id}
+  </select>
 </mapper>
