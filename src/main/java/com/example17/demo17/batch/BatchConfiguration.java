@@ -74,7 +74,7 @@ public class BatchConfiguration {
         Map<String,Object> map = new HashMap<>();
         map.put("id", "10");
         itemReader.setParameterValues(map);
-        itemReader.setQueryId("com.example17.demo17.mapper.getList");
+        itemReader.setQueryId("com.example17.demo17.mapper.BigDataUsersMapper.getList");
         return itemReader;
     }
 

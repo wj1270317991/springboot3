@@ -17,6 +17,6 @@ import java.util.Map;
 
 public interface BigDataUsersMapper extends BaseMapper<BigDataUsers> {
 
-    List<BigDataUsers> getList(@Param("params")Map<String,Object> params);
+    List<BigDataUsers> getList(Map<String,Object> params);
 
 }
