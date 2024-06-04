@@ -5,7 +5,6 @@ spring:
   batch:
     job:
       enabled: true
-    initialize-schema: ALWAYS
   security:
     user:
       name: admin
@@ -69,6 +68,9 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    workerId: ${random.int[1,31]}
+    datacenterId: ${random.int[1,31]}
 
 
 decorator:

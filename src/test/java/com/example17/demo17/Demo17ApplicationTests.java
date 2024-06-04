@@ -1,15 +1,32 @@
 package com.example17.demo17;
 
+import cn.hutool.core.text.NamingCase;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.EnvironmentPBEConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootTest
 class Demo17ApplicationTests {
+
+    @Test
+    public void workerid2() throws Exception {
+        String string = "afdsfdsfds$$12312321";
+        System.out.println(string.lastIndexOf("$$"));
+        String aa = string.substring(string.lastIndexOf("$$")+2);
+        System.out.println(aa);
+    }
+
+
+    @Test
+    public void workerid() throws Exception {
+        long id = IdWorker.getId();
+        System.out.println("id: "+id);
+    }
 
     @Test
     public void testEncrypt() throws Exception {
@@ -46,5 +63,9 @@ class Demo17ApplicationTests {
     }
 
 
-
+    @Test
+    public void strCase(){
+        String hello_world = NamingCase.toPascalCase("HELLO_WORLD");
+        System.out.println(hello_world);
+    }
 }
