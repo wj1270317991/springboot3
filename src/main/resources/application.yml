@@ -97,4 +97,8 @@ app:
   jwt-secret: daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb
   jwt-expiration-milliseconds: 604800000
 
-
+minio:
+  endpoint: http://192.168.1.34:9001
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucketName: sinoprof-bucket
