@@ -10,8 +10,31 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
+
 @SpringBootTest
 class Demo17ApplicationTests {
+
+
+    @Test
+    public void workerid3() throws Exception {
+        String string = "J.17.34.61288471`";
+        List<String> strings = StrUtil.splitTrim(string, ".");
+        if (strings.size() == 4){
+            if (StrUtil.isNotEmpty(strings.get(3))) {
+                if(strings.get(3).chars().allMatch(Character::isDigit)) {
+                    try {
+                        System.out.println("1111111111111");
+                    } catch (NumberFormatException e) {
+
+                    }
+                }else {
+                    System.out.println("22222222");
+                }
+            }
+        }
+
+    }
 
     @Test
     public void workerid2() throws Exception {
