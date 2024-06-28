@@ -29,4 +29,16 @@ public class SftpController {
         return "success";
     }
 
+
+    @RequestMapping("execShell2")
+    public String execShell() {
+        try {
+            SftpUtil.execShellNoReturn();
+        } catch (JSchException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+        return "success";
+    }
+
 }

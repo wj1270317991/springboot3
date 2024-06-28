@@ -39,4 +39,16 @@ public class SftpUtil {
         log.info("执行shell的返回结果："+s);
         log.info("执行shell的错误信息为："+error);
     }
+
+
+
+    public static void execShellNoReturn() throws JSchException {
+        Session session = JschUtil.getSession("192.168.1.143", 22, "root", "Arrow123");
+        String filename = "/root/shell/0c1505eab8e047cf979344da9cb49a40_HQ_202310_pt_vendorpublish_attachment_busi.zip";
+        String cmd = "sh /root/shell/aa.sh " + filename + " bbb &";
+        long ss = System.currentTimeMillis();
+        String s = JschUtil.exec(session, cmd, Charset.defaultCharset());
+        System.out.println(System.currentTimeMillis() - ss);
+        log.info("执行shell的返回结果："+s);
+    }
 }
