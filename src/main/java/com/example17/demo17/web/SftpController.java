@@ -41,4 +41,15 @@ public class SftpController {
         return "success";
     }
 
+
+    @RequestMapping("readFile")
+    public String readFile() {
+        try {
+            return SftpUtil.readFile();
+        } catch (JSchException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
+
 }

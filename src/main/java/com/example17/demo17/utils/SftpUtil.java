@@ -51,4 +51,15 @@ public class SftpUtil {
         System.out.println(System.currentTimeMillis() - ss);
         log.info("执行shell的返回结果："+s);
     }
+
+
+    public static String readFile() throws JSchException {
+//        Session session = JschUtil.getSession("192.168.1.143", 22, "root", "Arrow123");
+        Sftp sftp = JschUtil.createSftp("192.168.1.143", 22, "root", "Arrow123");
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        sftp.get("/root/unziplogs/0c1505eab8e047cf979344da9cb49a40_HQ_202310_pt_vendorpublish_attachment_busi.zip.txt",baos );
+        sftp.close();
+        String str = baos.toString();
+        return str;
+    }
 }
