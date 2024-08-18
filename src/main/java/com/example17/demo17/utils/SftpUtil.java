@@ -1,15 +1,23 @@
 package com.example17.demo17.utils;
 
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.ssh.JschUtil;
 import cn.hutool.extra.ssh.Sftp;
+import com.alibaba.fastjson2.JSONObject;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * com.example17.demo17.utils
@@ -61,5 +69,38 @@ public class SftpUtil {
         sftp.close();
         String str = baos.toString();
         return str;
+    }
+
+    public static ByteArrayOutputStream execShell3() {
+
+        String doShell = "ls -ltr  /var/log/ |grep  log";
+        Session session = null;
+        Map<String,String> res = null;
+        try {
+            session = JschUtil.createSession("192.168.1.143", 22, "root", "Arrow123");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            String result = JschUtil.exec(session, doShell, Charset.defaultCharset(),baos);
+            String error = baos.toString();
+            res = new HashMap<>();
+            res.put("result", result);
+            List<String> split = StrUtil.split(result, "\n");
+            String regex = ".+\s+(.+log)";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher m = pattern.matcher(split.get(0));
+            if (!m.find()) {
+                System.out.println("文件路径格式错误!");
+                throw new Exception("文件路径格式错误");
+            }
+            System.out.println(JSONObject.toJSONString(m.group()));
+            String localFullPathName = "/var/log/" + m.group(1);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            JschUtil.createSftp(session).download(localFullPathName , byteArrayOutputStream);
+            return byteArrayOutputStream;
+        } catch (Exception e) {
+
+        } finally {
+            JschUtil.close(session);
+        }
+        return null;
     }
 }
