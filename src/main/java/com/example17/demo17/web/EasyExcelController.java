@@ -1,5 +1,7 @@
 package com.example17.demo17.web;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.thread.ThreadUtil;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
@@ -12,6 +14,7 @@ import com.example17.demo17.service.BigDataUsersService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * com.example17.demo17.web
@@ -34,6 +38,25 @@ public class EasyExcelController {
 
     @Autowired
     BigDataUsersService bigDataUsersService;
+
+
+    @Transactional(rollbackFor = Exception.class)
+    @GetMapping("saveSleep")
+    public String saveSleep() throws Exception{
+        BigDataUsers bigDataUsers = new BigDataUsers();
+        bigDataUsers.setAge(1000);
+        bigDataUsers.setName("aaaa");
+        System.out.println("开启睡眠："+ DateUtil.now());
+        bigDataUsersService.save(bigDataUsers);
+        for (int ii = 0;ii<3600;ii++) {
+            ThreadUtil.sleep(10, TimeUnit.NANOSECONDS);
+            System.out.println("循环里面："+ DateUtil.now());
+        }
+        //int i = 1/0;
+        System.out.println("结束睡眠："+ DateUtil.now());
+        return "";
+    }
+
 
     @GetMapping("list")
     public String list() {
