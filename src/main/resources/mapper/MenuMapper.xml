@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example17.demo17.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.example17.demo17.entity.Menu">
+    <!--@mbg.generated-->
+    <!--@Table menu-->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="MENU_ID" jdbcType="BIGINT" property="menuId" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="DISPLAY_ORDER" jdbcType="INTEGER" property="displayOrder" />
+    <result column="PARENT_ID" jdbcType="BIGINT" property="parentId" />
+    <result column="ENABLE_FLAG" jdbcType="VARCHAR" property="enableFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, MENU_ID, CODE, TITLE, DISPLAY_ORDER, PARENT_ID, ENABLE_FLAG
+  </sql>
+</mapper>
