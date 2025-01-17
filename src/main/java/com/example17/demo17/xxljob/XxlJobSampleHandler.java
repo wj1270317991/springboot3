@@ -1,6 +1,6 @@
 package com.example17.demo17.xxljob;
 
-import com.xxl.job.core.handler.annotation.XxlJob;
+//import com.xxl.job.core.handler.annotation.XxlJob;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class XxlJobSampleHandler {
 
-    @XxlJob("demoJobHandler")
+//    @XxlJob("demoJobHandler")
     public void demoJobHandler() {
         log.info("XXL-JOB, Hello World.");
     }

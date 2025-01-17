@@ -1,6 +1,6 @@
 package com.example17.demo17.xxljob;
 
-import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
+//import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -40,19 +40,19 @@ public class XxlJobConfig {
     private int logRetentionDays;
 
 
-    @Bean
-    public XxlJobSpringExecutor xxlJobExecutor() {
-        log.info(">>>>>>>>>>> xxl-job config init.");
-        XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
-        xxlJobSpringExecutor.setAdminAddresses(adminAddresses);
-        xxlJobSpringExecutor.setAppname(appname);
-        xxlJobSpringExecutor.setAddress(address);
-        xxlJobSpringExecutor.setIp(ip);
-        xxlJobSpringExecutor.setPort(port);
-        xxlJobSpringExecutor.setAccessToken(accessToken);
-        xxlJobSpringExecutor.setLogPath(logPath);
-        xxlJobSpringExecutor.setLogRetentionDays(logRetentionDays);
-
-        return xxlJobSpringExecutor;
-    }
+//    @Bean
+//    public XxlJobSpringExecutor xxlJobExecutor() {
+//        log.info(">>>>>>>>>>> xxl-job config init.");
+//        XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
+//        xxlJobSpringExecutor.setAdminAddresses(adminAddresses);
+//        xxlJobSpringExecutor.setAppname(appname);
+//        xxlJobSpringExecutor.setAddress(address);
+//        xxlJobSpringExecutor.setIp(ip);
+//        xxlJobSpringExecutor.setPort(port);
+//        xxlJobSpringExecutor.setAccessToken(accessToken);
+//        xxlJobSpringExecutor.setLogPath(logPath);
+//        xxlJobSpringExecutor.setLogRetentionDays(logRetentionDays);
+//
+//        return xxlJobSpringExecutor;
+//    }
 }

@@ -17,6 +17,14 @@ class Demo17ApplicationTests {
 
 
     @Test
+    public void par() throws Exception {
+        String s = "{syscode=MPA,operResut=1,dataType=WfData,operType=Check,message=接收流程数据[遇威接入验证测试配奏软件】，[zhengshy]一接收人存在，接收待办成功}";
+
+    }
+
+
+
+    @Test
     public void workerid3() throws Exception {
         String string = "J.17.34.61288471`";
         List<String> strings = StrUtil.splitTrim(string, ".");
