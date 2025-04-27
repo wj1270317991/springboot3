@@ -11,10 +11,16 @@ import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.pdf.pdfbox.core.base.Document;
+import org.dromara.pdf.pdfbox.core.component.Textarea;
+import org.dromara.pdf.pdfbox.core.ext.analyzer.DocumentAnalyzer;
+import org.dromara.pdf.pdfbox.core.info.TextInfo;
+import org.dromara.pdf.pdfbox.handler.PdfHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileOutputStream;
+import java.util.Set;
 
 /**
  * com.example17.demo17.pdf.web
@@ -70,6 +76,41 @@ public class PdfController {
         canvas.setLineWidth(0.5f);
         canvas.ellipse(x - 20, y + 20, x + 20, y + 20);
         canvas.fillStroke();
+    }
+
+
+
+
+    @RequestMapping( "bbb")
+    public void bbb(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+                // 加载文档
+                Document document = PdfHandler.getDocumentHandler().load("E:\\aaa.pdf");
+                // 创建文档分析器
+                DocumentAnalyzer analyzer = new DocumentAnalyzer(document);
+
+            // 解析文本信息（文档）
+            Set<TextInfo> infoSet = analyzer.analyzeText(document.getPages().size()-1);
+            // 输出文本信息
+            infoSet.forEach(System.out::println);
+
+            // 构建文本组件（单行，自动换行）
+            Textarea textarea = new Textarea(document.getPage(document.getPages().size()-1));
+            // 设置文本
+            textarea.setText("测试");
+            // 设置字体
+            textarea.setFontName("宋体");
+            // 设置字体大小
+            textarea.setFontSize(20F);
+            textarea.setBeginX(422.39624f);
+            textarea.setBeginY(247.83105f);
+            // 绘制
+            textarea.render();
+            // 保存文档
+            document.save("E:\\ccc.pdf");
+            // 关闭文档
+            document.close();
+
     }
 
 
