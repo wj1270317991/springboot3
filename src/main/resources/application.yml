@@ -131,7 +131,7 @@ sa-token:
   active-timeout: -1                  # 临时有效期（-1表示永不过期）(指定时间内无操作就视为token过期) 单位: 秒
   is-concurrent: true                 # 允许并发登录
   is-share: false                     # 不共享token
-  token-style: uuid                   # token风格
+  token-style: random-128             # token风格
   is-log: true                        # 输出操作日志
 
   # 请求头配置
@@ -139,7 +139,7 @@ sa-token:
   is-read-header: true                 # 从请求头读取token
   #  token-prefix: "Bearer"               # token前缀
   # jwt秘钥
-  jwt-secret-key: abcdefghijklmnopqrstuvwxyz
+  jwt-secret-key: abcdefghijkl11mnopqrstuvwxyz
 # security配置
 security:
   # 排除路径
