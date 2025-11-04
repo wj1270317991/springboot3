@@ -27,7 +27,7 @@ spring:
           auth: true
   data:
     redis:
-      host: 192.168.1.250
+      host: 127.0.0.1
       port: 6379
       database: 1
       # 读超时
@@ -49,10 +49,9 @@ spring:
     type: REDIS
     data:
       redis:
-        host: 192.168.1.250
+        host: 127.0.0.1
         username:
         port: 6379
-        password:
         database: 2
         time-to-live: 1800000   #设置缓存过期时间，可选
         lettuce:
@@ -122,6 +121,33 @@ minio:
   accessKey: minioadmin
   secretKey: minioadmin
   bucketName: sinoprof-bucket
+
+
+############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
+sa-token:
+  # 基础配置
+  token-name: Authorization           # token名称
+  timeout: 2592000                    # token有效期（30天）
+  active-timeout: -1                  # 临时有效期（-1表示永不过期）(指定时间内无操作就视为token过期) 单位: 秒
+  is-concurrent: true                 # 允许并发登录
+  is-share: false                     # 不共享token
+  token-style: uuid                   # token风格
+  is-log: true                        # 输出操作日志
+
+  # 请求头配置
+  is-read-cookie: false                # 不从cookie读取token
+  is-read-header: true                 # 从请求头读取token
+  #  token-prefix: "Bearer"               # token前缀
+  # jwt秘钥
+  jwt-secret-key: abcdefghijklmnopqrstuvwxyz
+# security配置
+security:
+  # 排除路径
+  excludes:
+    - /auth/*
+encryption:
+  key: ${KEY:9876543210123456}       # 16位字符的加密密钥
+
 
 
 # xxl-job 定时任务配置
