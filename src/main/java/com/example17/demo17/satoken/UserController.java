@@ -7,6 +7,7 @@ import cn.dev33.satoken.stp.parameter.SaLoginParameter;
 import cn.dev33.satoken.stp.parameter.enums.SaLogoutMode;
 import cn.dev33.satoken.stp.parameter.enums.SaReplacedRange;
 import cn.dev33.satoken.util.SaResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Date: 2025/11/4 - 16:14
  * Description:
  */
+@Slf4j
 @RestController
 @RequestMapping("sa-token/user/")
 public class UserController {
@@ -23,6 +25,8 @@ public class UserController {
     // 测试登录，浏览器访问： http://localhost:8081/user/doLogin?username=zhang&password=123456
     @RequestMapping("doLogin")
     public Object doLogin(String username, String password) {
+         log.info("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+         log.error("bbbbbbbbbbbbbbbbbbbbbbbbbbb");
          StpUtil.login(10001, new SaLoginParameter()
                 .setDeviceType("PC")             // 此次登录的客户端设备类型, 一般用于完成 [同端互斥登录] 功能
                 .setDeviceId("xxxxxxxxx")        // 此次登录的客户端设备ID, 登录成功后该设备将标记为可信任设备

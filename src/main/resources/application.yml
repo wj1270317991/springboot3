@@ -4,6 +4,12 @@ logging:
   level:
     root: INFO
 spring:
+  application:
+    name: demo17
+  logging:
+    config: classpath:log4j2-spring.xml
+    level:
+      root: INFO
   batch:
     job:
       enabled: true
